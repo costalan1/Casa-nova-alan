@@ -70,6 +70,7 @@ document.getElementById("gift-form").addEventListener("submit", function (e) {
     name: name,        // O nome do presente é atualizado para o nome da pessoa
     email: email       // O e-mail da pessoa é armazenado
   }).then(() => {
+    console.log("Presente atualizado com sucesso!");  // Log para confirmar a atualização
     alert(`Obrigado, ${name}! Presente confirmado.`);
 
     // Envia o e-mail para você
