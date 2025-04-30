@@ -54,7 +54,7 @@ document.getElementById("gift-form").addEventListener("submit", function (e) {
   }
 
   const giftDoc = db.collection("gifts").doc(giftId);
-  giftDoc.update({ reservado: true, nome, email }).then(() => {
+  giftDoc.update({ available: true, nome, email }).then(() => {
     alert(`Obrigado, ${name}! Presente confirmado.`);
 
     // Envia o e-mail para você
