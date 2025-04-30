@@ -20,8 +20,10 @@ emailjs.init("mWfB4nXwKvQblnwFr");
 const giftList = document.getElementById("gift-list");
 
 function carregarPresentes() {
+  console.log("Iniciando o carregamento dos presentes...");
   giftList.innerHTML = "";
   db.collection("gifts").get().then((querySnapshot) => {
+    console.log("Dados carregados com sucesso!");
     querySnapshot.forEach((doc) => {
       const gift = doc.data();
       if (!gift.reservado) {
@@ -35,6 +37,8 @@ function carregarPresentes() {
         giftList.appendChild(li);
       }
     });
+  }).catch((error) => {
+    console.error("Erro ao carregar presentes:", error);
   });
 }
 
