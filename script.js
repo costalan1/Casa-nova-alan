@@ -59,7 +59,7 @@ document.getElementById("gift-form").addEventListener("submit", function (e) {
     alert(`Obrigado, ${name}! Presente confirmado.`);
 
 // Envia o e-mail para você
-window.emailjs.send("service_gmail", "template_lq3gppr", {
+send("service_gmail", "template_lq3gppr", {
   to_name: "Alan",
   to_email: "alancosta294@gmail.com",
   from_name: name,
