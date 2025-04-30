@@ -23,7 +23,7 @@ function carregarPresentes() {
     console.log("Dados carregados com sucesso!");
     querySnapshot.forEach((doc) => {
       const gift = doc.data();
-      if (!gift.reservado) {
+      if (!gift.available) {
         const li = document.createElement("li");
         li.textContent = gift.name;
         li.setAttribute("data-id", doc.id);
@@ -55,7 +55,7 @@ document.getElementById("gift-form").addEventListener("submit", function (e) {
   }
 
   const giftDoc = db.collection("gifts").doc(giftId);
-  giftDoc.update({ reservado: true, nome, email }).then(() => {
+  giftDoc.update({ available: true, name, email }).then(() => {
     alert(`Obrigado, ${name}! Presente confirmado.`);
 
     // Envia o e-mail para você
