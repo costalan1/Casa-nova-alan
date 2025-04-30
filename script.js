@@ -13,10 +13,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// Inicializa o EmailJS
-window.onload = function() {
-  emailjs.init("mWfB4nXwKvQblnwFr");
-
 // Carrega os presentes
 const giftList = document.getElementById("gift-list");
 
@@ -40,6 +36,10 @@ function carregarPresentes() {
 }
 
 carregarPresentes();
+
+// Inicializa o EmailJS
+window.onload = function() {
+  emailjs.init("mWfB4nXwKvQblnwFr");
 
 // Lida com o envio do formulário
 document.getElementById("gift-form").addEventListener("submit", function (e) {
