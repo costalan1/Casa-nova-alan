@@ -28,10 +28,14 @@
 
   <!-- Inicializa EmailJS (versão 4) -->
   <script type="module">
-    import * as emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-    emailjs.init("mWfB4nXwKvQblnwFr");
-    window.emailjs = emailjs; // Torna acessível ao script.js
-  </script>
+  import * as emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+  emailjs.init("mWfB4nXwKvQblnwFr");
+  window.emailjs = emailjs;
+
+  const script = document.createElement("script");
+  script.src = "script.js";
+  document.body.appendChild(script);
+</script>
 
   <!-- Seu script -->
   <script src="script.js"></script>
