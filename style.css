@@ -24,18 +24,19 @@ ul#gift-list {
 }
 
 /* Estilo para facilitar a depuração */
+ul#gift-list {
+  list-style-type: none;
+  padding: 0;
+  background-color: #fff; /* Definir um fundo branco para o contêiner */
+  border-radius: 10px;
+}
+
 ul#gift-list li {
   background: #e0e0e0;
   margin: 10px 0;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
-  border: 1px solid #000; /* Adicionando borda para ver se o item está visível */
   color: #000; /* Garantindo que o texto seja visível */
-}
-
-form input, form button {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
+  border: 1px solid #ccc; /* Borda para ajudar a ver os itens */
 }
