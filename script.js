@@ -1,5 +1,4 @@
-
-// CONFIGURE O FIREBASE AQUI
+// Inicializa o Firebase usando o SDK compatível
 const firebaseConfig = {
   apiKey: "AIzaSyCJBvDjC09EmMlstdGqIO0PztsopsIzsYM",
   authDomain: "casa-nova-alan.firebaseapp.com",
@@ -10,52 +9,49 @@ const firebaseConfig = {
   measurementId: "G-3VCB41EP0M"
 };
 
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// Usa o SDK compat
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-emailjs.init("mWfB4nXwKvQblnwFr");
+// Função para carregar os presentes
+function carregarPresentes() {
+  db.collection("gifts").get().then((querySnapshot) => {
+    const giftList = document.getElementById("gift-list");
+    giftList.innerHTML = ""; // limpa a lista
 
-const giftList = document.getElementById("gift-list");
-const formContainer = document.getElementById("form-container");
-const giftForm = document.getElementById("gift-form");
-let currentGift = null;
-
-function loadGifts() {
-  db.collection("gifts").where("available", "==", true).get().then(snapshot => {
-    giftList.innerHTML = "";
-    snapshot.forEach(doc => {
-      const item = document.createElement("li");
-      item.textContent = doc.data().name;
-      item.onclick = () => {
-        currentGift = doc;
-        document.getElementById("selectedGift").value = doc.id;
-        formContainer.style.display = "block";
-        window.scrollTo(0, document.body.scrollHeight);
-      };
-      giftList.appendChild(item);
+    querySnapshot.forEach((doc) => {
+      const gift = doc.data();
+      if (gift.available) {
+        const li = document.createElement("li");
+        li.textContent = gift.name;
+        li.onclick = () => selecionarPresente(doc.id, gift.name);
+        giftList.appendChild(li);
+      }
     });
   });
 }
 
-giftForm.addEventListener("submit", (e) => {
+function selecionarPresente(id, name) {
+  document.getElementById("form-container").style.display = "block";
+  document.getElementById("selectedGift").value = id;
+}
+
+document.getElementById("gift-form").addEventListener("submit", function (e) {
   e.preventDefault();
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const giftId = document.getElementById("selectedGift").value;
 
-  db.collection("gifts").doc(giftId).update({ available: false }).then(() => {
-    emailjs.send("alancosta294@gmail.com", "template_ikbdyup", {
-      gift_name: currentGift.data().name,
-      from_name: name,
-      reply_to: email,
-      to_name: "Alan",
-      to_email: "alancosta294@gmail.com"
-    });
-
-    alert("Obrigado! Seu presente foi reservado.");
-    formContainer.style.display = "none";
-    loadGifts();
+  db.collection("gifts").doc(giftId).update({
+    available: false,
+    reservedBy: name,
+    reservedEmail: email
+  }).then(() => {
+    alert("Obrigado por confirmar seu presente!");
+    document.getElementById("form-container").style.display = "none";
+    carregarPresentes();
   });
 });
 
-loadGifts();
+// Carrega os presentes ao abrir o site
+carregarPresentes();
