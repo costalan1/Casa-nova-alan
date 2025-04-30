@@ -43,7 +43,9 @@ function carregarPresentes() {
   });
 }
 
-carregarPresentes();
+document.addEventListener("DOMContentLoaded", function() {
+  carregarPresentes(); // Chamando a função após o carregamento completo do DOM
+});
 
 // Lida com o envio do formulário
 document.getElementById("gift-form").addEventListener("submit", function (e) {
