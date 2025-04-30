@@ -9,6 +9,9 @@
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+  <!-- EmailJS SDK versão 4 -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -26,13 +29,7 @@
     </div>
   </div>
 
-  <!-- Inicializa EmailJS (versão 4) -->
-  <script type="module">
-    import { send } from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-
-    const script = document.createElement("script");
-    script.src = "script.js";
-    document.body.appendChild(script);
-  </script>
+  <!-- Seu script -->
+  <script src="script.js"></script>
 </body>
 </html>
