@@ -4,7 +4,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyCJBvDjC09EmMlstdGqIO0PztsopsIzsYM",
   authDomain: "casa-nova-alan.firebaseapp.com",
   projectId: "casa-nova-alan",
-  storageBucket: "casa-nova-alan.firebasestorage.com",
+  storageBucket: "casa-nova-alan.appspot.com",
   messagingSenderId: "88678127780",
   appId: "1:88678127780:web:ea39a0999b4b6ec95d2e31",
   measurementId: "G-3VCB41EP0M"
