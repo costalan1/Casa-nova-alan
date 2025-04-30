@@ -1,3 +1,6 @@
+// Inicializa o EmailJS
+emailjs.init("mWfB4nXwKvQblnwFr"); // substitua pela sua Public Key
+
 // Inicializa o Firebase usando o SDK compatível
 const firebaseConfig = {
   apiKey: "AIzaSyCJBvDjC09EmMlstdGqIO0PztsopsIzsYM",
@@ -13,45 +16,63 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// Função para carregar os presentes
-function carregarPresentes() {
-  db.collection("gifts").get().then((querySnapshot) => {
-    const giftList = document.getElementById("gift-list");
-    giftList.innerHTML = ""; // limpa a lista
+// Inicializa o EmailJS
+emailjs.init("mWfB4nXwKvQblnwFr");
 
+// Carrega os presentes
+const giftList = document.getElementById("gift-list");
+
+function carregarPresentes() {
+  giftList.innerHTML = "";
+  db.collection("gifts").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
       const gift = doc.data();
-      if (gift.available) {
+      if (!gift.reservado) {
         const li = document.createElement("li");
-        li.textContent = gift.name;
-        li.onclick = () => selecionarPresente(doc.id, gift.name);
+        li.textContent = gift.nome;
+        li.setAttribute("data-id", doc.id);
+        li.addEventListener("click", () => {
+          document.getElementById("form-container").style.display = "block";
+          document.getElementById("selectedGift").value = doc.id;
+        });
         giftList.appendChild(li);
       }
     });
   });
 }
 
-function selecionarPresente(id, name) {
-  document.getElementById("form-container").style.display = "block";
-  document.getElementById("selectedGift").value = id;
-}
+carregarPresentes();
 
+// Lida com o envio do formulário
 document.getElementById("gift-form").addEventListener("submit", function (e) {
   e.preventDefault();
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
   const giftId = document.getElementById("selectedGift").value;
 
-  db.collection("gifts").doc(giftId).update({
-    available: false,
-    reservedBy: name,
-    reservedEmail: email
-  }).then(() => {
-    alert("Obrigado por confirmar seu presente!");
+  if (!name || !email || !giftId) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  const giftDoc = db.collection("gifts").doc(giftId);
+  giftDoc.update({ reservado: true, nome, email }).then(() => {
+    alert(`Obrigado, ${name}! Presente confirmado.`);
+
+    // Envia o e-mail para você
+    emailjs.send("alancosta294@gmail.com", "template_lq3gppr", {
+      to_name: "Alan",
+      from_name: name,
+      from_email: email,
+      gift: giftId
+    }).then(() => {
+      console.log("Email enviado com sucesso!");
+    }).catch((error) => {
+      console.error("Erro ao enviar email:", error);
+    });
+
     document.getElementById("form-container").style.display = "none";
-    carregarPresentes();
+    carregarPresentes(); // Atualiza a lista removendo item selecionado
   });
 });
-
-// Carrega os presentes ao abrir o site
-carregarPresentes();
