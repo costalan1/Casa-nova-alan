@@ -61,7 +61,7 @@ document.getElementById("gift-form").addEventListener("submit", function (e) {
   giftDoc.update({ available: true, nome, email }).then(() => {
     alert(`Obrigado, ${name}! Presente confirmado.`);
 
-    // Envia o e-mail para você
+// Envia o e-mail para você
 emailjs.send("service_gmail", "template_lq3gppr", {
   to_name: "Alan",
   to_email: "alancosta294@gmail.com",
@@ -69,8 +69,8 @@ emailjs.send("service_gmail", "template_lq3gppr", {
   from_email: email,
   gift: giftId
 })
-.then(() => {
-  console.log("Email enviado com sucesso!");
+.then((response) => {
+  console.log("Email enviado com sucesso!", response);
 })
 .catch((error) => {
   console.error("Erro ao enviar o email:", error);
