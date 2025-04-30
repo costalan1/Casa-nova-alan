@@ -1,9 +1,3 @@
-// Inicializa o EmailJS
-window.onload = function() {
-  emailjs.init("mWfB4nXwKvQblnwFr");
-  
-  carregarPresentes();
-
 // Inicializa o Firebase usando o SDK compatível
 const firebaseConfig = {
   apiKey: "AIzaSyCJBvDjC09EmMlstdGqIO0PztsopsIzsYM",
@@ -18,6 +12,10 @@ const firebaseConfig = {
 // Usa o SDK compat
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+
+// Inicializa o EmailJS
+window.onload = function() {
+  emailjs.init("mWfB4nXwKvQblnwFr");
 
 // Carrega os presentes
 const giftList = document.getElementById("gift-list");
