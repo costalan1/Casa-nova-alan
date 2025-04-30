@@ -13,10 +13,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// Inicializa o EmailJS
-const emailjs = window.emailjs; // Importa o EmailJS após atualização do SDK
-emailjs.init("mWfB4nXwKvQblnwFr");
-
 // Carrega os presentes
 const giftList = document.getElementById("gift-list");
 
@@ -63,7 +59,7 @@ document.getElementById("gift-form").addEventListener("submit", function (e) {
     alert(`Obrigado, ${name}! Presente confirmado.`);
 
 // Envia o e-mail para você
-emailjs.send("service_gmail", "template_lq3gppr", {
+window.emailjs.send("service_gmail", "template_lq3gppr", {
   to_name: "Alan",
   to_email: "alancosta294@gmail.com",
   from_name: name,
