@@ -64,6 +64,9 @@ document.getElementById("gift-form").addEventListener("submit", function (e) {
   }
 
   const giftDoc = db.collection("gifts").doc(giftId);
+
+  console.log("Tentando atualizar o presente com ID:", giftId);  // Verifique o ID do presente
+
   // Atualize o campo "available" para false e adicione os dados do usuário
   giftDoc.update({
     available: false,  // Agora, o presente não estará mais disponível
@@ -90,6 +93,8 @@ document.getElementById("gift-form").addEventListener("submit", function (e) {
     });
 
     document.getElementById("form-container").style.display = "none";
-    carregarPresentes(); // Atualiza a lista removendo item selecionado
+    carregarPresentes(); // Atualiza a lista removendo o item confirmado
+  }).catch((error) => {
+    console.error("Erro ao atualizar o presente:", error);  // Aqui o erro será mostrado
   });
 });
