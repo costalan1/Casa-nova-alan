@@ -25,7 +25,7 @@ function carregarPresentes() {
       const gift = doc.data();
       console.log("Gift:", gift); // Adicionando para depurar o objeto gift
 
-      if (!gift.available) { // Verifique se o campo "available" está correto
+      if (gift.available) { // Verifique se o campo "available" está correto
         const li = document.createElement("li");
         
         // Verifique se a chave 'name' existe e exiba um valor adequado
