@@ -63,6 +63,7 @@ document.getElementById("gift-form").addEventListener("submit", function (e) {
     // Envia o e-mail para você
     emailjs.send("service_gmail", "template_lq3gppr", {
       to_name: "Alan",
+      to_email: "alancosta294@gmail.com",      
       from_name: name,
       from_email: email,
       gift: giftId
