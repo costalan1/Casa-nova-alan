@@ -1,4 +1,4 @@
-// Inicializa o Firebase usando o SDK compatível
+// Inicializa o Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCJBvDjC09EmMlstdGqIO0PztsopsIzsYM",
   authDomain: "casa-nova-alan.firebaseapp.com",
@@ -9,12 +9,12 @@ const firebaseConfig = {
   measurementId: "G-3VCB41EP0M"
 };
 
-// Usa o SDK compat
+// Inicializa o Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// Inicializa o EmailJS com a chave pública
-emailjs.init("jOWtB4NrC9wK_tx_1");  // Substitua pela sua chave pública real
+// Inicializa o EmailJS com sua chave pública
+emailjs.init("jOWtB4NrC9wK_tx_1");  // Substitua pela sua chave pública
 
 // Carrega os presentes
 const giftList = document.getElementById("gift-list");
