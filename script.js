@@ -18,18 +18,18 @@ const giftList = document.getElementById("gift-list");
 
 function carregarPresentes() {
   console.log("Iniciando o carregamento dos presentes...");
-  giftList.innerHTML = "";
+  giftList.innerHTML = "";  // Limpar a lista antes de adicionar os itens
   db.collection("gifts").get().then((querySnapshot) => {
     console.log("Dados carregados com sucesso!");
     querySnapshot.forEach((doc) => {
       const gift = doc.data();
-      console.log("Gift:", gift); // Adicionando para depurar o objeto gift
+      console.log("Gift:", gift);  // Exibe o objeto completo
+      console.log("Available:", gift.available);  // Exibe o valor do campo available
 
-      if (gift.available) { // Verifique se o campo "available" está correto
+      // Exibe o presente apenas se o campo "available" for verdadeiro
+      if (gift.available === true) {  // Verificando se o campo "available" é exatamente true
         const li = document.createElement("li");
-        
-        // Verifique se a chave 'name' existe e exiba um valor adequado
-        li.textContent = gift.name || 'Nome do presente não encontrado'; 
+        li.textContent = gift.name || 'Nome do presente não encontrado'; // Exibe o nome do presente
         li.setAttribute("data-id", doc.id);
         li.addEventListener("click", () => {
           document.getElementById("form-container").style.display = "block";
