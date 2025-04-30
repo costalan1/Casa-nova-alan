@@ -18,19 +18,25 @@ const giftList = document.getElementById("gift-list");
 
 function carregarPresentes() {
   console.log("Iniciando o carregamento dos presentes...");
-  giftList.innerHTML = "";
+  giftList.innerHTML = ""; // Limpa a lista antes de recarregar
+
   db.collection("gifts").get().then((querySnapshot) => {
     console.log("Dados carregados com sucesso!");
+    
     querySnapshot.forEach((doc) => {
       const gift = doc.data();
+      console.log("Presente carregado:", gift); // Verifica o conteúdo do presente
+
       if (!gift.available) {
         const li = document.createElement("li");
-        li.textContent = gift.name;
+        li.textContent = gift.name || gift.nome || "Nome não disponível"; // Verifica os campos corretamente
         li.setAttribute("data-id", doc.id);
+        
         li.addEventListener("click", () => {
           document.getElementById("form-container").style.display = "block";
           document.getElementById("selectedGift").value = doc.id;
         });
+
         giftList.appendChild(li);
       }
     });
