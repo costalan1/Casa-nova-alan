@@ -58,17 +58,20 @@ document.getElementById("gift-form").addEventListener("submit", function (e) {
     alert(`Obrigado, ${name}! Presente confirmado.`);
 
     // Envia o e-mail para você
-    emailjs.send("service_gmail", "template_lq3gppr", {
-      to_name: "Alan",
-      to_email: "alancosta294@gmail.com",      
-      from_name: name,
-      from_email: email,
-      gift: giftId
-    }).then(() => {
-      console.log("Email enviado com sucesso!");
-    }).catch((error) => {
-      console.error("Erro ao enviar email:", error);
-    });
+emailjs.send("service_gmail", "template_lq3gppr", {
+  to_name: "Alan",
+  to_email: "alancosta294@gmail.com",
+  from_name: name,
+  from_email: email,
+  gift: giftId
+})
+.then(() => {
+  console.log("Email enviado com sucesso!");
+})
+.catch((error) => {
+  console.error("Erro ao enviar o email:", error);
+  alert("Houve um erro ao enviar o email. Tente novamente.");
+});
 
     document.getElementById("form-container").style.display = "none";
     carregarPresentes(); // Atualiza a lista removendo item selecionado
