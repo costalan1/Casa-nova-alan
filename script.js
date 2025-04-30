@@ -10,8 +10,8 @@ const firebaseConfig = {
   measurementId: "G-3VCB41EP0M"
 };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 emailjs.init("mWfB4nXwKvQblnwFr");
 
