@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chá de Casa Nova do Alan</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Chá de Casa Nova do Alan</h1>
+    <ul id="gift-list"></ul>
+
+    <div id="form-container" style="display:none;">
+      <h2>Quem vai presentear?</h2>
+      <form id="gift-form">
+        <input type="text" id="name" placeholder="Seu nome" required><br>
+        <input type="email" id="email" placeholder="Seu e-mail" required><br>
+        <input type="hidden" id="selectedGift">
+        <button type="submit">Confirmar Presente</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
