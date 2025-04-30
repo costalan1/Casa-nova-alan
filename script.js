@@ -1,5 +1,8 @@
 // Inicializa o EmailJS
-emailjs.init("mWfB4nXwKvQblnwFr"); // substitua pela sua Public Key
+window.onload = function() {
+  emailjs.init("mWfB4nXwKvQblnwFr");
+  carregarPresentes();
+};
 
 // Inicializa o Firebase usando o SDK compatível
 const firebaseConfig = {
@@ -15,9 +18,6 @@ const firebaseConfig = {
 // Usa o SDK compat
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-
-// Inicializa o EmailJS
-emailjs.init("mWfB4nXwKvQblnwFr");
 
 // Carrega os presentes
 const giftList = document.getElementById("gift-list");
