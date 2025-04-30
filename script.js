@@ -18,25 +18,23 @@ const giftList = document.getElementById("gift-list");
 
 function carregarPresentes() {
   console.log("Iniciando o carregamento dos presentes...");
-  giftList.innerHTML = ""; // Limpa a lista antes de recarregar
-
+  giftList.innerHTML = "";
   db.collection("gifts").get().then((querySnapshot) => {
     console.log("Dados carregados com sucesso!");
-    
     querySnapshot.forEach((doc) => {
       const gift = doc.data();
-      console.log("Presente carregado:", gift); // Verifica o conteúdo do presente
+      console.log("Gift:", gift); // Adicionando para depurar o objeto gift
 
-      if (!gift.available) {
+      if (!gift.available) { // Verifique se o campo "available" está correto
         const li = document.createElement("li");
-        li.textContent = gift.name || gift.nome || "Nome não disponível"; // Verifica os campos corretamente
-        li.setAttribute("data-id", doc.id);
         
+        // Verifique se a chave 'name' existe e exiba um valor adequado
+        li.textContent = gift.name || 'Nome do presente não encontrado'; 
+        li.setAttribute("data-id", doc.id);
         li.addEventListener("click", () => {
           document.getElementById("form-container").style.display = "block";
           document.getElementById("selectedGift").value = doc.id;
         });
-
         giftList.appendChild(li);
       }
     });
