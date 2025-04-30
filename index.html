@@ -1,21 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chá de Casa Nova do Alan</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 
-  <!-- Firebase -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-
-  <!-- EmailJS moderno -->
-  <script type="module">
-    import emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-    emailjs.init("mWfB4nXwKvQblnwFr");
-    window.emailjs = emailjs;
-  </script>
 </head>
 <body>
   <div class="container">
@@ -25,14 +18,22 @@
     <div id="form-container" style="display:none;">
       <h2>Quem vai presentear?</h2>
       <form id="gift-form">
-        <input type="text" id="name" placeholder="Seu nome" required><br>
-        <input type="email" id="email" placeholder="Seu e-mail" required><br>
-        <input type="hidden" id="selectedGift">
+        <input type="text" id="name" placeholder="Seu nome" required /><br />
+        <input type="email" id="email" placeholder="Seu e-mail" required /><br />
+        <input type="hidden" id="selectedGift" />
         <button type="submit">Confirmar Presente</button>
       </form>
     </div>
   </div>
 
+  <!-- Inicializa EmailJS (versão 4) -->
+  <script type="module">
+    import * as emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    emailjs.init("mWfB4nXwKvQblnwFr");
+    window.emailjs = emailjs; // Torna acessível ao script.js
+  </script>
+
+  <!-- Seu script -->
   <script src="script.js"></script>
 </body>
 </html>
