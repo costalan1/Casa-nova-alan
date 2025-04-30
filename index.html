@@ -28,9 +28,7 @@
 
   <!-- Inicializa EmailJS (versão 4) -->
   <script type="module">
-    import * as emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-    emailjs.init("mWfB4nXwKvQblnwFr");
-    window.emailjs = emailjs;
+    import { send } from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
 
     const script = document.createElement("script");
     script.src = "script.js";
