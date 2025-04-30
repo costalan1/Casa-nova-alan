@@ -64,7 +64,12 @@ document.getElementById("gift-form").addEventListener("submit", function (e) {
   }
 
   const giftDoc = db.collection("gifts").doc(giftId);
-  giftDoc.update({ available: true, name, email }).then(() => {
+  // Atualize o campo "available" para false e adicione os dados do usuário
+  giftDoc.update({
+    available: false,  // Agora, o presente não estará mais disponível
+    name: name,        // O nome do presente é atualizado para o nome da pessoa
+    email: email       // O e-mail da pessoa é armazenado
+  }).then(() => {
     alert(`Obrigado, ${name}! Presente confirmado.`);
 
     // Envia o e-mail para você
