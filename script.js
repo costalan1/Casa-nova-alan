@@ -1,8 +1,8 @@
 // Inicializa o EmailJS
 window.onload = function() {
   emailjs.init("mWfB4nXwKvQblnwFr");
+  
   carregarPresentes();
-};
 
 // Inicializa o Firebase usando o SDK compatível
 const firebaseConfig = {
