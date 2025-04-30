@@ -14,7 +14,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // Inicializa o EmailJS com a chave pública
-emailjs.init("mWfB4nXwKvQblnwFr");  // Substitua pela sua chave pública real
+emailjs.init("jOWtB4NrC9wK_tx_1");  // Substitua pela sua chave pública real
 
 // Carrega os presentes
 const giftList = document.getElementById("gift-list");
