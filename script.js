@@ -25,7 +25,7 @@ function carregarPresentes() {
       const gift = doc.data();
       if (!gift.reservado) {
         const li = document.createElement("li");
-        li.textContent = gift.nome;
+        li.textContent = gift.name;
         li.setAttribute("data-id", doc.id);
         li.addEventListener("click", () => {
           document.getElementById("form-container").style.display = "block";
