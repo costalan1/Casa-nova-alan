@@ -1,5 +1,15 @@
 
 body {
+/* Estilo para facilitar a depuração */
+ul#gift-list li {
+  background: #e0e0e0;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #000; /* Adicionando borda para ver se o item está visível */
+  color: #000; /* Garantindo que o texto seja visível */
+}
   font-family: Arial, sans-serif;
   background: #f7f7f7;
   margin: 0;
